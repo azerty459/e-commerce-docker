@@ -13,4 +13,6 @@ done
 cd /var/www/e-commerce/classes/artifacts/e_commerce_jar/
 pwd
 ls -latr
+
+# Lancement du .jar à la racine de l'application
 java -jar e-commerce.jar --spring.config.location="file:/var/www/e-commerce/src/main/resources/application.properties"
