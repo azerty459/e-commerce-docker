@@ -1,0 +1,59 @@
+# Adopt version 2 syntax:
+#   https://docs.docker.com/compose/compose-file/#/versioning
+version: '2'
+
+volumes:
+    database_tuto:
+        driver: local
+services:
+###########################
+# Database
+###########################
+  db: # "db" est le DNS => Dans le code source, remplacer localhost par db
+    container_name: postgres_ecommerce_dev
+    restart: always
+    build: ./docker/postgres/
+    ports:
+      - "6666:5432"
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: projet-e-commerce
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: azerty
+#######################################
+# Apache - Front UI (client and admin)
+#######################################
+  httpd:
+    container_name: apache_ecommerce_dev
+    restart: always
+    build: ./docker/apache
+    ports:
+      - "80:1080"
+      - "443:1443"
+    volumes:
+      - ./docker/apache/vhost/:/usr/local/apache2/conf/vhosts
+      - ./docker/apache/certs/nextoo.crt:/usr/local/apache2/conf/server.crt
+      - ./docker/apache/certs/nextoo.key:/usr/local/apache2/conf/server.key
+    volumes_from:
+      - data
+###########################
+# Data
+###########################
+  data:
+    container_name: data_ecommerce_dev
+    build: ./docker/data/
+    volumes:
+      - ./../e-commerce-ui:/var/www/e-commerce-ui
+      - ./../e-commerce-ui-admin:/var/www/e-commerce-ui-admin
+      - ./../e-commerce:/var/www/e-commerce
+###########################
+# Java Backend
+###########################
+  java:
+    container_name: java_ecommerce_dev
+    build: ./docker/java/
+    expose:
+      - "9000"
+    volumes_from:
+      - data
