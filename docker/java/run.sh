@@ -10,7 +10,7 @@ while ! nc -z postgres_ecommerce_dev 5432; do
         exit 1
     fi
 done
-cd /var/www/e-commerce/classes/artifacts/e_commerce_jar/
+cd ~/e-commerce/
 pwd
 ls -latr
 
