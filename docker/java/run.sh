@@ -10,9 +10,9 @@ while ! nc -z postgres_ecommerce_dev 5432; do
         exit 1
     fi
 done
-cd ~/e-commerce/
+cd /var/www/e-commerce
 pwd
 ls -latr
 
 # Lancement du .jar à la racine de l'application en environnement de DEV
-java -jar e-commerce.jar --spring.config.location="file:/var/www/e-commerce/src/main/resources/application-prod.properties"
+java -jar e-commerce-0.0.1-SNAPSHOT.jar --spring.config.location="file:/var/www/e-commerce/src/main/resources/application-prod.properties"
