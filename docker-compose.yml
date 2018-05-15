@@ -10,7 +10,7 @@ services:
 # Database
 ###########################
   db: # "db" est le DNS => Dans le code source, remplacer localhost par db
-    container_name: postgres_ecommerce_dev
+    container_name: postgres_ecommerce_prod
     restart: always
     build: ./docker/postgres/
     ports:
@@ -25,7 +25,7 @@ services:
 # Apache - Front UI (client and admin)
 #######################################
   httpd:
-    container_name: apache_ecommerce_dev
+    container_name: apache_ecommerce_prod
     restart: always
     build: ./docker/apache
     ports:
@@ -41,7 +41,7 @@ services:
 # Data
 ###########################
   data:
-    container_name: data_ecommerce_dev
+    container_name: data_ecommerce_prod
     build: ./docker/data/
     volumes:
       - ./../e-commerce-ui:/var/www/e-commerce-ui
@@ -51,7 +51,7 @@ services:
 # Java Backend
 ###########################
   java:
-    container_name: java_ecommerce_dev
+    container_name: java_ecommerce_prod
     build: ./docker/java/
     expose:
       - "9000"
