@@ -15,4 +15,4 @@ pwd
 ls -latr
 
 # Lancement du .jar à la racine de l'application en environnement de DEV
-java -jar e-commerce-0.0.1-SNAPSHOT.jar --spring.config.location="file:/var/www/e-commerce/src/main/resources/application-prod.properties"
+java -jar target/e-commerce-0.0.1-SNAPSHOT.jar --spring.config.location="file:/var/www/e-commerce/src/main/resources/application-dev.properties"
