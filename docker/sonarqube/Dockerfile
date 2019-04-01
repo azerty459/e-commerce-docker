@@ -1,1 +1,1 @@
-FROM sonarqube:6.4
+#FROM sonarqube:6.4
