@@ -1,8 +1,9 @@
 FROM ubuntu:14.04
+#TODO use a docker with jre already installed
 
 # Prerequisites
-run apt-get update
-run apt-get install -y software-properties-common
+RUN apt-get update
+RUN apt-get install -y software-properties-common
 
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update -qq 
